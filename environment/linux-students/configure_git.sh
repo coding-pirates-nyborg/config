@@ -14,6 +14,21 @@ cat pre_commit_hook > ~/.git-templates/hooks/pre-commit
 chmod +x ~/.git-templates/hooks/pre-commit
 git config --global init.templateDir '~/.git-templates'
 
+chmod +x ~/.git-templates/hooks/pre-commit
+git config --global init.templateDir "~/.git-templates"
+
+# Setup for uid 1001 aka hackerX also known as the student
+
+# Get the username from UID 1001
+username=$(getent passwd 1001 | cut -d: -f1)
+
+sudo mkdir -p /home/$username/.git-templates/hooks
+sudo touch /home/$username/.git-templates/hooks/pre-commit
+
+sudo cat pre_commit_hook > /home/$username/.git-templates/hooks/pre-commit
+
+sudo chmod +x /home/$username/.git-templates/hooks/pre-commit
+echo 'git config --global init.templateDir "/home/$username/.git-templates"' | sudo tee -a /home/$username/.bashrc > /dev/null
 
 git config --global push.default upstream
 git config --global http.sslverify true
