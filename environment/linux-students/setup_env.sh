@@ -7,7 +7,10 @@ apt update &&  apt upgrade -y
 # Install required packages
 apt install -y curl wget git python3 python3-pip software-properties-common apt-transport-https \
     zip unzip build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev \
-    openssh-client vim nmap dnsutils mtr net-tools iputils-ping traceroute whois
+    openssh-client vim nmap dnsutils mtr net-tools iputils-ping traceroute whois inkscape thonny flatpak
+
+# Install Flatpak packages
+flatpak install -y cc.arduino.IDE2
 
 (type -p wget >/dev/null || (apt update &&  apt-get install wget -y)) \
 && mkdir -p -m 755 /etc/apt/keyrings \
