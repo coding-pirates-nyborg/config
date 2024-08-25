@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Ask for the username and email if not set
+username=$(git config user.name)
+email=$(git config user.email)
+
+if [ -z "$username" ] || [ -z "$email" ]; then
+    echo "Git username and/or email not set. Please provide them."
+
+    # Prompt for username and email
+    echo "Enter your Git username:"
+    read username
+    echo "Enter your Git email:"
+    read email
+
+    # Set the username and email for the current repository
+    git config user.name "$username"
+    git config user.email "$email"
+fi
+
+echo "Using Git user:"
+git config user.name
+git config user.email
