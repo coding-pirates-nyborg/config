@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# Ensure the script is run as root
-if [ "$(id -u)" -ne 1000 ]; then
-  echo "Please run as superuser"
-  exit 1
-fi
-
 mkdir -p ~/.git-templates/hooks
 touch ~/.git-templates/hooks/pre-commit
 
