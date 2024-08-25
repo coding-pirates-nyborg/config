@@ -25,10 +25,13 @@ username=$(getent passwd 1001 | cut -d: -f1)
 sudo mkdir -p /home/$username/.git-templates/hooks
 sudo touch /home/$username/.git-templates/hooks/pre-commit
 
-sudo cat pre_commit_hook > /home/$username/.git-templates/hooks/pre-commit
+sudo cat pre_commit_hook | sudo tee /home/$username/.git-templates/hooks/pre-commit > /dev/null
 
 sudo chmod +x /home/$username/.git-templates/hooks/pre-commit
+
 echo 'git config --global init.templateDir "/home/$username/.git-templates"' | sudo tee -a /home/$username/.bashrc > /dev/null
+
+sudo chown -R $username:$username /home/$username/.git-templates
 
 git config --global push.default upstream
 git config --global http.sslverify true
